@@ -1,0 +1,39 @@
+-- ═══════════════════════════════════════════════════════════════
+-- STORAGE POLICIES - USE DASHBOARD UI (Not SQL)
+-- ═══════════════════════════════════════════════════════════════
+--
+-- Storage policies must be configured via the Supabase Dashboard UI
+-- because SQL access to storage.objects is restricted to the database owner.
+--
+-- STEPS:
+-- 1. Open Supabase Dashboard → Storage
+-- 2. Click on "chat-files" bucket
+-- 3. Click the "Policies" tab
+-- 4. Click "New Policy" or "Create a new policy"
+-- 5. For each policy below, fill in the details and save:
+--
+-- ─── POLICY 1: Allow authenticated users to upload ────────────────────────
+-- Name: "Authenticated users can upload"
+-- Operation: INSERT
+-- Target: bucket_id = 'chat-files'
+-- Role: authenticated
+--
+-- ─── POLICY 2: Allow authenticated users to read files ──────────────────────
+-- Name: "Users can read files"
+-- Operation: SELECT
+-- Target: bucket_id = 'chat-files'
+-- Role: authenticated
+--
+-- ─── POLICY 3: Allow users to delete files ────────────────────────────────
+-- Name: "Users can delete their files"
+-- Operation: DELETE
+-- Target: bucket_id = 'chat-files'
+-- Role: authenticated
+--
+-- ─── POLICY 4: Allow users to update file metadata ────────────────────────
+-- Name: "Users can update file metadata"
+-- Operation: UPDATE
+-- Target: bucket_id = 'chat-files'
+-- Role: authenticated
+--
+-- ═══════════════════════════════════════════════════════════════
